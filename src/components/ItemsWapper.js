@@ -114,17 +114,17 @@ export default class ItemsWapper extends Component {
   };
   select = (level, value) => {
     this.setState({ [level]: value });
-    if (level == "secondLevel") {
+    if (level === "secondLevel") {
       this.setState({ thirdLevel: "" });
     }
 
-    if (level == "firstLevel") {
+    if (level === "firstLevel") {
       this.setState({ secondLevel: "", thirdLevel: "" });
     }
   };
 
   getChildren = (level) =>
-    Object.values(this.state.items).filter((p) => p.item == level);
+    Object.values(this.state.items).filter((p) => p.item === level);
   render() {
     console.log(this.state.firstLevel);
     const { items, firstLevel, secondLevel, thirdLevel, orderedList } =
@@ -174,80 +174,27 @@ export default class ItemsWapper extends Component {
         <NavBar />
         <Row>
           <Col md={2}>
-            <SideBar />
+            <SideBar
+              firstlist={firstlist}
+              select={this.select}
+              selectedSpecial={firstLevel}
+              level="firstLevel"
+            />
           </Col>
-          <Col md={6}>
-            <Cards />
-            {/* <div class="d-flex align-content-stretch flex-wrap">
-              <div class="m-1 card  w-20 py-3 px-2 rounded bg-success">
-                chiken biryanui mouni doubt testg long nxt word will get cut
-              </div>
-              <div class="m-1 card  w-20 py-3 px-2 rounded bg-success">
-                test
-              </div>
-              <div class="m-1 card  w-20 py-3 px-2 rounded bg-danger">test</div>
-              <div class="m-1 card  w-20 py-3 px-2 rounded bg-danger">test</div>
-              <div class="m-1 card  w-20 py-3 px-2 rounded bg-danger">test</div>
-            </div> */}
+          <Col md={6} class="bg-success h-100">
+            <Cards
+              list={secondList}
+              select={this.select}
+              selectedSpecial={secondLevel}
+              level="secondLevel"
+              orderList={orderList}
+            />
           </Col>
           <Col md={4}>
-            <Billing />
-            {/* <Container>
-              <Table responsive>
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Table heading</th>
-                    <th>Table heading</th>
-                    <th>Table heading</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                  </tr>
-                </tbody>
-              </Table>
-            </Container> */}
+            <Billing orderedList={orderedList} />
           </Col>
         </Row>
       </div>
     );
   }
-  //   return (
-  //     <div>
-  //       <Container>
-  //         <Row>
-  //           <Col>
-  //             <SubItems
-  //               list={firstlist}
-  //               select={this.select}
-  //               selectedSpecial={firstLevel}
-  //               level="firstLevel"
-  //             />
-  //           </Col>
-  //           <Col>
-  //             {firstLevel !== "" && (
-  //               <SubItems
-  //                 list={secondList}
-  //                 select={this.select}
-  //                 selectedSpecial={secondLevel}
-  //                 level="secondLevel"
-  //               />
-  //             )}
-  //           </Col>
-  //         </Row>
-  //       </Container>
-  //     </div>
-  //   );
-  // }
 }

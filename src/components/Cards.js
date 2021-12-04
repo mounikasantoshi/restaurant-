@@ -1,18 +1,26 @@
 import React from "react";
 
-export default function Cards() {
+export default function Cards({
+  list,
+  select,
+  selectedSpecial,
+  level,
+  orderList,
+}) {
   return (
-    <div>
-      <div class="d-flex align-content-stretch flex-wrap">
-        <div class="m-1 card  w-20 py-3 px-2 rounded bg-success">
-          chiken biryanui mouni doubt testg long nxt word will get cut
+    <div class="d-flex align-content-stretch flex-wrap">
+      {list.map((special, i) => (
+        <div
+          // {special.category==="Veg"?
+          //   class="m-1 card  w-20 py-3 px-2 rounded bg-success":
+          class="m-1 card  w-20 py-3 px-2 rounded bg-danger"
+          onClick={() =>
+            orderList(special.itemname, special.cost, special.category)
+          }
+        >
+          {special.itemname}
         </div>
-        <div class="m-1 card  w-20 py-3 px-2 rounded bg-success">test</div>
-        <div class="m-1 card  w-20 py-3 px-2 rounded bg-success">test</div>
-        <div class="m-1 card  w-20 py-3 px-2 rounded bg-danger">test</div>
-        <div class="m-1 card  w-20 py-3 px-2 rounded bg-danger">test</div>
-        <div class="m-1 card  w-20 py-3 px-2 rounded bg-danger">test</div>
-      </div>
+      ))}
     </div>
   );
 }
