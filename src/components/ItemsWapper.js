@@ -111,6 +111,7 @@ export default class ItemsWapper extends Component {
     secondLevel: "",
     thirdLevel: false,
     orderedList: [],
+    counter: [],
   };
   select = (level, value) => {
     this.setState({ [level]: value });
@@ -126,47 +127,47 @@ export default class ItemsWapper extends Component {
   getChildren = (level) =>
     Object.values(this.state.items).filter((p) => p.item === level);
   render() {
-    console.log(this.state.firstLevel);
-    const { items, firstLevel, secondLevel, thirdLevel, orderedList } =
-      this.state;
+    // console.log(this.state.firstLevel);
+    const { items, firstLevel, secondLevel, orderedList, counter } = this.state;
     const firstlist = Object.values(items).filter((p) => p.item === 0);
     const secondList = this.getChildren(firstLevel);
-    console.log(secondList);
+    // console.log(secondList);
 
     const onIncrement = (e) => {
-      // setCounters(
-      //   counters.map((count, i) => (i == e.target.name ? count + 1 : count))
-      // );
-    };
-
-    const onDecrement = (e) => {
+      console.log(counter);
       this.setState({
-        orderedList: [
-          ...orderedList,
-          orderedList.map((order, i) =>
-            i == e.target.name ? order.counter - 1 : order.counter
-          ),
+        counter:
+          // ...counter,
+          counter.map((count, i) => (i == e.target.name ? count + 1 : count)),
+      });
+      console.log(counter);
+    };
+    const onDecrement = (e) => {
+      console.log(counter);
+      this.setState({
+        counter: [
+          // ...counter,
+          counter.map((count, i) => (i == e.target.name ? count - 1 : count)),
         ],
       });
-      // setCounters(
-      //   counters.map((count, i) => (i == e.target.name ? count - 1 : count))
-      // );
+      console.log(counter);
     };
 
     const orderList = (name, cost, cato) => {
-      orderedList.includes({ item: name, Price: cost, category: cato }) &&
-        alert("Already added to cart");
-      this.setState({
-        orderedList: [
-          ...orderedList,
-          {
-            item: name,
-            Price: cost,
-            category: cato,
-            counter: 0,
-          },
-        ],
-      });
+      !orderedList.includes({ item: name, Price: cost, category: cato }) &&
+        // alert("Already added to cart");
+        this.setState({
+          orderedList: [
+            ...orderedList,
+            {
+              item: name,
+              Price: cost,
+              category: cato,
+              counter: 1,
+            },
+          ],
+          counter: [...counter, 1],
+        });
     };
 
     return (
@@ -191,7 +192,12 @@ export default class ItemsWapper extends Component {
             />
           </Col>
           <Col md={4}>
-            <Billing orderedList={orderedList} />
+            <Billing
+              orderedList={orderedList}
+              onDecrement={onDecrement}
+              onIncrement={onIncrement}
+              counter={counter}
+            />
           </Col>
         </Row>
       </div>

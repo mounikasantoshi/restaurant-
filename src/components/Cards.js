@@ -11,9 +11,10 @@ export default function Cards({
     <div class="d-flex align-content-stretch flex-wrap">
       {list.map((special, i) => (
         <div
-          // {special.category==="Veg"?
-          //   class="m-1 card  w-20 py-3 px-2 rounded bg-success":
-          class="m-1 card  w-20 py-3 px-2 rounded bg-danger"
+          style={{
+            backgroundColor: special.category === "Veg" ? "green" : "red",
+          }}
+          class="m-1 card  w-20 py-3 px-2 rounded  "
           onClick={() =>
             orderList(special.itemname, special.cost, special.category)
           }
