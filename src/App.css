@@ -25,8 +25,15 @@
   overflow: hidden;
 }
 
+.col-md-2 {
+  background: #696969;
+}
 @media print {
   .printPageButton {
     display: none;
   }
+}
+
+.bg-secondary {
+  background-color: #696969;
 }

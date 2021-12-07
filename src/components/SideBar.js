@@ -1,14 +1,15 @@
 import React from "react";
 import { Stack } from "react-bootstrap";
 
-export default function SideBar({ firstlist, select }) {
+export default function SideBar({ categories, select }) {
   return (
     <div>
       <Stack>
-        {firstlist.map((item) => (
+        {categories.map((item) => (
           <div
-            class="p-3  bg-secondary text-white border border-dark "
-            onClick={() => select("firstLevel", item.id)}
+            style={{ width: "217px", borderColor: "#696969" }}
+            class="p-3  bg-secondary text-white border border-light"
+            onClick={() => select(item.id)}
           >
             {item.itemname}
           </div>

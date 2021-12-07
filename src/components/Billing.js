@@ -1,26 +1,16 @@
 import React, { useState } from "react";
 import { Container, Table, Button } from "react-bootstrap";
 import Counter from "./Counter";
-import { FaRegDotCircle } from "react-icons/fa";
+import items from "../data/items.json";
 
-export default function Billing({
-  orderedList,
-  onDecrement,
-  onIncrement,
-  counter,
-}) {
-  // const ordertotal = [];
-  const qtyTotal = [];
-  // const totalcost = qtyTotal.reduce((b, a) => b + a, 0);
-  // orderedList.forEach((item) => ordertotal.push(item.Price));
-
+export default function Billing({ cart, onDecrement, onIncrement, counter }) {
   const printPage = () => {
     const printButton = document.getElementById("remove");
     const incButton = document.getElementById("inc");
     const printRemoveButton = document.getElementById("printBtn");
     printButton.style.visibility = "hidden";
-    incButton.style.visibility = "hidden";
     printRemoveButton.style.visibility = "hidden";
+    incButton.style.visibility = "hidden";
 
     var print_div = document.getElementById("print");
 
@@ -31,12 +21,30 @@ export default function Billing({
     print_area.print();
     // print_area.close();
     // This is the code print a particular div element
+    incButton.style.visibility = "visible";
+    printButton.style.visibility = "visible";
+    printRemoveButton.style.visibility = "visible";
   };
 
+  function getTotalBIll() {
+    return Object.keys(cart).reduce(
+      (a, id) => a + cart[id] * items[id].cost,
+      0
+    );
+  }
+
+  const orderItems = Object.keys(cart);
   return (
     <div>
       <Container id="print">
-        <Table responsive>
+        <Table
+          responsive
+          style={{
+            display: "block",
+            height: "450px",
+            // overflowy: "scroll",
+          }}
+        >
           <thead>
             <tr>
               <th>S.no</th>
@@ -47,45 +55,42 @@ export default function Billing({
             </tr>
           </thead>
           <tbody>
-            {orderedList.map((item, i) => {
-              qtyTotal.push(counter[i] * item.Price);
+            {orderItems.map((id, i) => {
+              const { itemname, cost } = items[id];
 
+              // qtyTotal.push(counter[i] * item.Price);
               return (
                 <tr>
                   <td>{i + 1}</td>
-                  <td>
-                    {item.item}
-                    <FaRegDotCircle
-                      style={{
-                        color: item.category === "Veg" ? "Green" : "red",
-                        height: "10px",
-                      }}
-                    />
-                  </td>
+                  <td>{itemname}</td>
 
                   <td>
                     <Counter
-                      id={i}
+                      id={id}
                       onDecrement={onDecrement}
                       onIncrement={onIncrement}
-                      counter={counter[i]}
+                      counter={cart[id]}
                     />
                   </td>
-                  <td>{item.Price}</td>
-                  <td>{counter[i] * item.Price}</td>
+                  <td>{cost}</td>
+                  <td>{cart[id] * cost}</td>
                 </tr>
               );
             })}
-
+          </tbody>
+        </Table>
+        <Table>
+          <tbody>
             <tr>
               <td>#</td>
               <td>Total Price</td>
               <td>-</td>
               <td>-</td>
-              <td>{qtyTotal.reduce((b, a) => b + a, 0)}</td>
+              <td>{getTotalBIll()}</td>
             </tr>
           </tbody>
         </Table>
+
         <Button className="printPageButton" id="printBtn" onClick={printPage}>
           Print
         </Button>
