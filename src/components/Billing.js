@@ -3,14 +3,16 @@ import { Container, Table, Button } from "react-bootstrap";
 import Counter from "./Counter";
 import items from "../data/items.json";
 
-export default function Billing({ cart, onDecrement, onIncrement, counter }) {
+export default function Billing({ cart, onDecrement, onIncrement }) {
   const printPage = () => {
     const printButton = document.getElementById("remove");
     const incButton = document.getElementById("inc");
     const printRemoveButton = document.getElementById("printBtn");
+    const tableHeight = document.getElementById("tableprt");
     printButton.style.visibility = "hidden";
     printRemoveButton.style.visibility = "hidden";
     incButton.style.visibility = "hidden";
+    tableHeight.style.height = "none";
 
     var print_div = document.getElementById("print");
 
@@ -21,6 +23,7 @@ export default function Billing({ cart, onDecrement, onIncrement, counter }) {
     print_area.print();
     // print_area.close();
     // This is the code print a particular div element
+    tableHeight.style.height = "10px";
     incButton.style.visibility = "visible";
     printButton.style.visibility = "visible";
     printRemoveButton.style.visibility = "visible";
@@ -47,7 +50,7 @@ export default function Billing({ cart, onDecrement, onIncrement, counter }) {
         >
           <thead>
             <tr>
-              <th>S.no</th>
+              <th>#</th>
               <th> Item Name</th>
               <th>Qty</th>
               <th>Price</th>
@@ -60,7 +63,7 @@ export default function Billing({ cart, onDecrement, onIncrement, counter }) {
 
               // qtyTotal.push(counter[i] * item.Price);
               return (
-                <tr>
+                <tr style={{ height: "10px" }} id="tableprt">
                   <td>{i + 1}</td>
                   <td>{itemname}</td>
 

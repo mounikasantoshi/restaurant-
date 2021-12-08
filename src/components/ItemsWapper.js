@@ -9,9 +9,7 @@ import items from "../data/items.json";
 export default class ItemsWapper extends Component {
   state = {
     selectedCategory: "",
-    orderedList: [],
     cart: {},
-    counter: [],
   };
   select = (selectedCategory) => {
     this.setState({ selectedCategory });
@@ -24,13 +22,6 @@ export default class ItemsWapper extends Component {
     this.setState({
       cart: { ...cart, [id]: cart[id] + 1 },
     });
-    // cart: orderItems.map((id) =>
-    //   id == e.target.name ? (cart[id] = cart[id] + 1) : cart[id]
-    // ),
-
-    // counter: this.state.counter.map((count, i) =>
-    //   i == e.target.name ? count + 1 : count
-    // ),
   };
   onDecrement = (e) => {
     const { cart } = this.state;
@@ -44,46 +35,30 @@ export default class ItemsWapper extends Component {
     });
   };
 
-  getChildren = (level) => Object.values(items).filter((p) => p.item === level);
+  getSubCategories = (level) =>
+    Object.values(items).filter((p) => p.item === level);
 
   onItemSelect = (id) => {
-    // const { orderedList, counter } = this.state;
+    console.log(id);
 
+    const count = this.state.cart[id] ? this.state.cart[id] + 1 : 1;
+    count > 1 && alert("Already in cart and quantity added by 1 ");
     this.setState({
-      cart: { ...this.state.cart, [id]: 1 },
+      cart: { ...this.state.cart, [id]: count },
     });
-
-    // !orderedList.some((item) => item.item == name) &&
-    //   // alert("Already added to cart");
-    //   this.setState({
-    //     orderedList: [
-    //       ...orderedList,
-    //       {
-    //         item: name,
-    //         Price: cost,
-    //         category: cato,
-    //         counter: 1,
-    //       },
-    //     ],
-    //     counter: [...counter, 1],
-    //   });
   };
+
   render() {
-    const { selectedCategory, orderedList, counter } = this.state;
+    console.log(this.state.cart);
+    const { selectedCategory } = this.state;
     const categories = Object.values(items).filter((p) => p.item === 0);
-    const itemsList = this.getChildren(selectedCategory);
+    const itemsList = this.getSubCategories(selectedCategory);
     console.log(this.state.cart);
     return (
-      <div
-        style={{
-          height: "100%",
-          color: "f5f5f5",
-          // backgroundColor: "#696969",
-        }}
-      >
+      <div>
         <NavBar />
-        <Row class="w-100">
-          <Col md={2}>
+        <Row className="w-100 ">
+          <Col md={2} className="p-0 ">
             <SideBar
               categories={categories}
               select={this.select}
@@ -91,20 +66,22 @@ export default class ItemsWapper extends Component {
               level="selectedCategory"
             />
           </Col>
-          <Col md={6} class="bg-success h-100">
+          <Col md={6} className="p-0">
             <Cards
               selectedCategory={this.state.selectedCategory}
               list={itemsList}
               select={this.select}
               onClick={this.onItemSelect}
+              onDecrement={this.onDecrement}
+              onIncrement={this.onIncrement}
+              cart={this.state.cart}
             />
           </Col>
-          <Col md={4} style={{ paddingright: "none" }}>
+          <Col md={4} className="p-0">
             <Billing
               cart={this.state.cart}
               onDecrement={this.onDecrement}
               onIncrement={this.onIncrement}
-              counter={counter}
             />
           </Col>
         </Row>

@@ -1,20 +1,18 @@
 import React from "react";
 import { Stack } from "react-bootstrap";
+import categories from "../data/categories.json";
 
-export default function SideBar({ categories, select }) {
+export default function SideBar({ select }) {
   return (
-    <div>
-      <Stack>
-        {categories.map((item) => (
-          <div
-            style={{ width: "217px", borderColor: "#696969" }}
-            class="p-3  bg-secondary text-white border border-light"
-            onClick={() => select(item.id)}
-          >
-            {item.itemname}
-          </div>
-        ))}
-      </Stack>
-    </div>
+    <aside>
+      {categories.map((item) => (
+        <div
+          class="p-3 text-white border border-light "
+          onClick={() => select(item.id)}
+        >
+          {item.itemName}
+        </div>
+      ))}
+    </aside>
   );
 }

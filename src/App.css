@@ -28,12 +28,20 @@
 .col-md-2 {
   background: #696969;
 }
-@media print {
-  .printPageButton {
-    display: none;
-  }
-}
 
 .bg-secondary {
   background-color: #696969;
+}
+button.countbtn {
+  width: 20px;
+  padding: 0px;
+  font-weight: 700;
+  box-shadow: none;
+}
+div.tablecol {
+  padding-right: 0px;
+}
+.bodyheight {
+  height: 100vh;
+  overflow: hidden;
 }

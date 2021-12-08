@@ -2,9 +2,15 @@ import React from "react";
 import items from "../data/items.json";
 import Items from "./Items";
 
-export default function Cards({ list, onClick, selectedCategory }) {
+export default function Cards({
+  list,
+  onClick,
+  selectedCategory,
+  onIncrement,
+  cart,
+}) {
   const menuItems = Object.values(items);
-
+  const orderItems = Object.keys(cart);
   return (
     <>
       {selectedCategory === "" && (

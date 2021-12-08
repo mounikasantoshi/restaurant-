@@ -4,11 +4,7 @@ import ItemsWapper from "./components/ItemsWapper";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-  return (
-    <div class="mh-100">
-      <ItemsWapper />
-    </div>
-  );
+  return <ItemsWapper />;
 }
 
 export default App;
