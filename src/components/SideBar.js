@@ -1,14 +1,17 @@
 import React from "react";
-import { Stack } from "react-bootstrap";
 import categories from "../data/categories.json";
+import { useDispatch } from "react-redux";
+import { onSelectCategory } from "../Redux/Actions/NavActions";
 
-export default function SideBar({ select }) {
+function SideBar(props) {
+  const dispatch = useDispatch();
+
   return (
     <aside>
       {categories.map((item) => (
         <div
           class="p-3 text-white border border-light "
-          onClick={() => select(item.id)}
+          onClick={() => dispatch(onSelectCategory(item.id))}
         >
           {item.itemName}
         </div>
@@ -16,3 +19,5 @@ export default function SideBar({ select }) {
     </aside>
   );
 }
+
+export default SideBar;

@@ -1,157 +1,157 @@
 {
   "2": {
     "id": 2,
-    "item": 1,
+    "categoryId": 1,
     "category": "Veg",
-    "itemname": "veg-biryani",
+    "itemName": "veg-biryani",
     "cost": 100
   },
   "3": {
     "id": 3,
-    "item": 1,
+    "categoryId": 1,
     "category": "Veg",
-    "itemname": "paneer-biryani",
+    "itemName": "paneer-biryani",
     "cost": 210
   },
   "4": {
     "id": 4,
-    "item": 1,
+    "categoryId": 1,
     "category": "Veg",
-    "itemname": "muchroom-biryani",
+    "itemName": "muchroom-biryani",
     "cost": 200
   },
   "5": {
     "id": 5,
-    "item": 1,
+    "categoryId": 1,
     "category": "non-Veg",
-    "itemname": "chicken-biryani",
+    "itemName": "chicken-biryani",
     "cost": 150
   },
   "6": {
     "id": 6,
-    "item": 1,
+    "categoryId": 1,
     "category": "non-Veg",
-    "itemname": "egg-biryani",
+    "itemName": "egg-biryani",
     "cost": 120
   },
   "7": {
     "id": 7,
-    "item": 1,
+    "categoryId": 1,
     "category": "non-Veg",
-    "itemname": "dum-biryani",
+    "itemName": "dum-biryani",
     "cost": 220
   },
   "8": {
     "id": 8,
-    "item": 1,
+    "categoryId": 1,
     "category": "non-Veg",
-    "itemname": "mutton-biryani",
+    "itemName": "mutton-biryani",
     "cost": 200
   },
 
   "10": {
     "id": 10,
-    "item": 9,
+    "categoryId": 9,
     "category": "Veg",
-    "itemname": "muchroom-monchuriya",
+    "itemName": "muchroom-monchuriya",
     "cost": 150
   },
   "11": {
     "id": 11,
-    "item": 9,
+    "categoryId": 9,
     "category": "Veg",
-    "itemname": "chilli muchroom",
+    "itemName": "chilli muchroom",
     "cost": 180
   },
   "12": {
     "id": 12,
-    "item": 9,
+    "categoryId": 9,
     "category": "Veg",
-    "itemname": "paneer manchuriya",
+    "itemName": "paneer manchuriya",
     "cost": 200
   },
   "13": {
     "id": 13,
-    "item": 9,
+    "categoryId": 9,
     "category": "Veg",
-    "itemname": "babycorn",
+    "itemName": "babycorn",
     "cost": 160
   },
   "14": {
     "id": 14,
-    "item": 9,
+    "categoryId": 9,
     "category": "Veg",
-    "itemname": "sweetcorn",
+    "itemName": "sweetcorn",
     "cost": 100
   },
   "15": {
     "id": 15,
-    "item": 9,
+    "categoryId": 9,
     "category": "non-Veg",
-    "itemname": "chicken-manchuriya",
+    "itemName": "chicken-manchuriya",
     "cost": 200
   },
   "16": {
     "id": 16,
-    "item": 9,
+    "categoryId": 9,
     "category": "nonVeg",
-    "itemname": "chilli-chicken",
+    "itemName": "chilli-chicken",
     "cost": 250
   },
   "18": {
     "id": 18,
-    "item": 17,
+    "categoryId": 17,
     "category": "Veg",
-    "itemname": "Choclate-Ice-Cream",
+    "itemName": "Choclate-Ice-Cream",
     "cost": 250
   },
   "19": {
     "id": 19,
-    "item": 17,
+    "categoryId": 17,
     "category": "Veg",
-    "itemname": "Vennela-Ice-Cream",
+    "itemName": "Vennela-Ice-Cream",
     "cost": 250
   },
   "20": {
     "id": 20,
-    "item": 17,
+    "categoryId": 17,
     "category": "Veg",
-    "itemname": "Milk-Shake",
+    "itemName": "Milk-Shake",
     "cost": 250
   },
   "21": {
     "id": 21,
-    "item": 17,
+    "categoryId": 17,
     "category": "Veg",
-    "itemname": "Milk-Cake",
+    "itemName": "Milk-Cake",
     "cost": 250
   },
   "22": {
     "id": 22,
-    "item": 17,
+    "categoryId": 17,
     "category": "Veg",
-    "itemname": "Thick-Shake",
+    "itemName": "Thick-Shake",
     "cost": 250
   },
   "24": {
     "id": 24,
-    "item": 23,
+    "categoryId": 23,
     "category": "Veg",
-    "itemname": "sprit",
+    "itemName": "sprit",
     "cost": 250
   },
   "25": {
     "id": 25,
-    "item": 23,
+    "categoryId": 23,
     "category": "Veg",
-    "itemname": "coco-cola",
+    "itemName": "coco-cola",
     "cost": 250
   },
   "26": {
     "id": 26,
-    "item": 23,
+    "categoryId": 23,
     "category": "Veg",
-    "itemname": "Fanta",
+    "itemName": "Fanta",
     "cost": 250
   }
 }

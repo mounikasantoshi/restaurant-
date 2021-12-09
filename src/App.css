@@ -20,6 +20,9 @@
   width: 18%;
 }
 
+.w-100 {
+  height: 91.5vh;
+}
 .card {
   height: 80px;
   overflow: hidden;
@@ -44,4 +47,10 @@ div.tablecol {
 .bodyheight {
   height: 100vh;
   overflow: hidden;
+}
+.mt-6 {
+  margin-top: 55px;
+}
+.h-10 {
+  height: 170px;
 }

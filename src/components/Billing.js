@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container, Table, Button } from "react-bootstrap";
 import Counter from "./Counter";
 import items from "../data/items.json";
+import { useSelector } from "react-redux";
 
-export default function Billing({ cart, onDecrement, onIncrement }) {
+export default function Billing() {
+  const orderItems = useSelector(({ sidebar: { cart } }) => {
+    return cart;
+  });
   const printPage = () => {
     const printButton = document.getElementById("remove");
     const incButton = document.getElementById("inc");
@@ -29,14 +33,14 @@ export default function Billing({ cart, onDecrement, onIncrement }) {
     printRemoveButton.style.visibility = "visible";
   };
 
+  const orderedList = Object.keys(orderItems);
   function getTotalBIll() {
-    return Object.keys(cart).reduce(
-      (a, id) => a + cart[id] * items[id].cost,
+    return orderedList.reduce(
+      (a, id) => a + orderItems[id] * items[id].cost,
       0
     );
   }
 
-  const orderItems = Object.keys(cart);
   return (
     <div>
       <Container id="print">
@@ -45,7 +49,6 @@ export default function Billing({ cart, onDecrement, onIncrement }) {
           style={{
             display: "block",
             height: "450px",
-            // overflowy: "scroll",
           }}
         >
           <thead>
@@ -58,25 +61,19 @@ export default function Billing({ cart, onDecrement, onIncrement }) {
             </tr>
           </thead>
           <tbody>
-            {orderItems.map((id, i) => {
-              const { itemname, cost } = items[id];
+            {orderedList.map((id, i) => {
+              const { itemName, cost } = items[id];
 
-              // qtyTotal.push(counter[i] * item.Price);
               return (
                 <tr style={{ height: "10px" }} id="tableprt">
                   <td>{i + 1}</td>
-                  <td>{itemname}</td>
+                  <td>{itemName}</td>
 
                   <td>
-                    <Counter
-                      id={id}
-                      onDecrement={onDecrement}
-                      onIncrement={onIncrement}
-                      counter={cart[id]}
-                    />
+                    <Counter id={id} counter={orderItems[id]} />
                   </td>
                   <td>{cost}</td>
-                  <td>{cart[id] * cost}</td>
+                  <td>{orderItems[id] * cost}</td>
                 </tr>
               );
             })}

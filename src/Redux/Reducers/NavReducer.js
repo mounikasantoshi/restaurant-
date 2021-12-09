@@ -1,32 +1,69 @@
 import {
-  GET_MENU_ITEMS,
-  GET_BIRYANIS,
-  GET_STARTERS,
+  SELECTED_ITEM,
+  SELECT_CATEGORY,
+  ITEM_INCREMENt,
+  ITEM_DECREASE,
+  TABLE_BOOKING,
 } from "../Actions/ActionType";
-import items from "../data/items.json";
-import categories from "../data/categories.json";
 
 const initialState = {
-  selectedItem: "",
-  selectedSubItems: [],
+  selectedCategory: "",
+  cart: {},
+  table: [
+    { tableNo: "1", bookingStatus: "Not Booked" },
+    { tableNo: "2", bookingStatus: "Not Booked" },
+    { tableNo: "3", bookingStatus: "Not Booked" },
+    { tableNo: "4", bookingStatus: "Not Booked" },
+    { tableNo: "5", bookingStatus: "Not Booked" },
+    { tableNo: "6", bookingStatus: "Not Booked" },
+    { tableNo: "7", bookingStatus: "Not Booked" },
+    { tableNo: "8", bookingStatus: "Not Booked" },
+    { tableNo: "9", bookingStatus: "Not Booked" },
+    { tableNo: "10", bookingStatus: "Not Booked" },
+  ],
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case GET_MENU_ITEMS:
+    case SELECT_CATEGORY:
       return {
         ...state,
-        selectedItem: selectedItem,
+        selectedCategory: action.payload,
       };
-    case GET_BIRYANIS:
+
+    case SELECTED_ITEM:
       return {
         ...state,
-        selectedSubItems: items.filter((item) => item.id === selectedItem),
+        cart: {
+          ...state.cart,
+          [action.payload]: state.cart[action.payload] + 1 || 1,
+        },
       };
-    case GET_STARTERS:
+    case ITEM_DECREASE:
+      let { [action.payload]: currentItemCount, ...remainingItems } =
+        state.cart;
+      let cart =
+        currentItemCount > 1
+          ? { ...remainingItems, [action.payload]: currentItemCount - 1 }
+          : remainingItems;
       return {
         ...state,
-        selectedSubItems: items.filter((item) => item.id === selectedItem),
+        cart,
+      };
+    case ITEM_INCREMENt:
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          [action.payload]: state.cart[action.payload] + 1,
+        },
+      };
+    case TABLE_BOOKING:
+      const resTable = [...state.table];
+      resTable[action.payload - 1].bookingStatus = "Booked";
+      return {
+        ...state,
+        table: resTable,
       };
     default:
       return state;
