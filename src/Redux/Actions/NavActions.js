@@ -4,6 +4,7 @@ import {
   ITEM_DECREASE,
   ITEM_INCREMENt,
   TABLE_BOOKING,
+  BILL_SETTLED,
 } from "./ActionType";
 
 export const onSelectCategory = (id) => ({
@@ -24,5 +25,10 @@ export const onIncrementItemQuantity = (id) => ({
 });
 export const onTableBook = (id) => ({
   type: TABLE_BOOKING,
+  payload: id,
+});
+
+export const onBillpaid = (id) => ({
+  type: BILL_SETTLED,
   payload: id,
 });

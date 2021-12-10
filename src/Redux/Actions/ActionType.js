@@ -3,3 +3,4 @@ export const SELECTED_ITEM = " SELECTED_ITEM";
 export const ITEM_INCREMENt = " ITEM_INCREMENt";
 export const ITEM_DECREASE = " ITEM_DECREASE";
 export const TABLE_BOOKING = " TABLE_BOOKING";
+export const BILL_SETTLED = " BILL_SETTLED";

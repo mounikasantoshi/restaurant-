@@ -1,28 +1,22 @@
 import React from "react";
-// import tables from "../data/tables.json";
-import { useDispatch, useSelector } from "react-redux";
-import { onTableBook } from "../Redux/Actions/NavActions";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export default function Table() {
-  const resTables = useSelector(({ sidebar: { table } }) => {
-    return table;
-  });
-  const dispatch = useDispatch();
+  const tableOrder = useSelector(({ sidebar: { tableOrder } }) => tableOrder);
 
+  const getTableStatusClass = (id) => (tableOrder[id] ? "danger" : "success");
   return (
     <div class="d-flex flex-wrap justify-content-around">
-      {resTables.map((table) => (
-        <button
-          style={{
-            backgroundColor:
-              table.bookingStatus === "Not Booked" ? "green" : "red",
-          }}
-          type="button"
-          class="btn mt-3 w-20"
-          onClick={() => dispatch(onTableBook(table.tableNo))}
-        >
-          Table{table.tableNo} {table.bookingStatus}
-        </button>
+      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((id, i) => (
+        <Link to={`/table/${id}`}>
+          <div
+            type="button"
+            class={`btn btn-${getTableStatusClass(id)} m-3 p-5 `}
+          >
+            Table {id}
+          </div>
+        </Link>
       ))}
     </div>
   );

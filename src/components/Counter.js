@@ -3,11 +3,12 @@ import { useDispatch } from "react-redux";
 import {
   onDecrementItemQuantity,
   onIncrementItemQuantity,
+  onSelectItem,
 } from "../Redux/Actions/NavActions";
 
 export default function CountRow({ counter, id }) {
   const dispatch = useDispatch();
-  const onIncrementClick = () => dispatch(onIncrementItemQuantity(id));
+  const onIncrementClick = () => dispatch(onSelectItem(id));
   const onDecrementClick = () => dispatch(onDecrementItemQuantity(id));
 
   return (
