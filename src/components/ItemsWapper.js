@@ -6,6 +6,8 @@ import Cards from "./Cards";
 import SideBar from "./SideBar";
 import { useDispatch, useSelector } from "react-redux";
 import { onTableBook } from "../Redux/Actions/NavActions";
+import BillToPrint from "./BillToPrint";
+// import BillToGetPrinted from "./BillToGetPrinted";
 
 export default function ItemsWapper() {
   let { tableId } = useParams();
@@ -31,6 +33,7 @@ export default function ItemsWapper() {
           </Col>
           <Col md={4} className="p-0">
             <Billing />
+            <BillToPrint />
           </Col>
         </Row>
       </div>

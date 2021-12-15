@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import {
   onDecrementItemQuantity,
-  onIncrementItemQuantity,
   onSelectItem,
 } from "../Redux/Actions/NavActions";
 
@@ -18,7 +17,7 @@ export default function CountRow({ counter, id }) {
         id="remove"
         onClick={onDecrementClick}
         type="button"
-        class="btn btn-outline-secondary countbtn "
+        class="btn btn-outline-secondary countbtn noprint"
       >
         -
       </button>
@@ -29,7 +28,7 @@ export default function CountRow({ counter, id }) {
         id="inc"
         onClick={onIncrementClick}
         type="button"
-        class="btn btn-outline-secondary countbtn "
+        class="btn btn-outline-secondary countbtn noprint"
       >
         +
       </button>

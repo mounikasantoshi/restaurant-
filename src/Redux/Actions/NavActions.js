@@ -3,7 +3,7 @@ import {
   SELECT_CATEGORY,
   ITEM_DECREASE,
   ITEM_INCREMENt,
-  TABLE_BOOKING,
+  TABLE_OCCUPIED,
   BILL_SETTLED,
 } from "./ActionType";
 
@@ -24,7 +24,7 @@ export const onIncrementItemQuantity = (id) => ({
   payload: id,
 });
 export const onTableBook = (id) => ({
-  type: TABLE_BOOKING,
+  type: TABLE_OCCUPIED,
   payload: id,
 });
 

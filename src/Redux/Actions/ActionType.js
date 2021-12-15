@@ -2,5 +2,5 @@ export const SELECT_CATEGORY = " SELECT_CATEGORY";
 export const SELECTED_ITEM = " SELECTED_ITEM";
 export const ITEM_INCREMENt = " ITEM_INCREMENt";
 export const ITEM_DECREASE = " ITEM_DECREASE";
-export const TABLE_BOOKING = " TABLE_BOOKING";
+export const TABLE_OCCUPIED = " TABLE_OCCUPIED";
 export const BILL_SETTLED = " BILL_SETTLED";

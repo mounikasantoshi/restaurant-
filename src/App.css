@@ -54,3 +54,22 @@ div.tablecol {
 .h-10 {
   height: 170px;
 }
+.tableOrder:hover + .hide {
+  display: block;
+}
+.hide {
+  display: none;
+}
+
+.bill {
+  align-items: center;
+}
+
+@media print {
+  .noprint {
+    visibility: hidden;
+  }
+}
+.billtoprint {
+  visibility: hidden;
+}

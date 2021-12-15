@@ -2,14 +2,14 @@ import {
   SELECTED_ITEM,
   SELECT_CATEGORY,
   ITEM_DECREASE,
-  TABLE_BOOKING,
+  TABLE_OCCUPIED,
   BILL_SETTLED,
 } from "../Actions/ActionType";
 
 const initialState = {
   selectedCategory: "",
   tableId: "",
-  tableOrder: {},
+  tablesAndCartItems: {},
 };
 
 export default function (state = initialState, action) {
@@ -23,13 +23,13 @@ export default function (state = initialState, action) {
 
     case SELECTED_ITEM:
       let tableId = state.tableId;
-      let selectedTableCartItems = state.tableOrder[tableId].cartItems;
+      let selectedTableCartItems = state.tablesAndCartItems[tableId].cartItems;
       let categoryId = action.payload;
       let itemCount = selectedTableCartItems[categoryId];
       return {
         ...state,
-        tableOrder: {
-          ...state.tableOrder,
+        tablesAndCartItems: {
+          ...state.tablesAndCartItems,
           [tableId]: {
             cartItems: {
               ...selectedTableCartItems,
@@ -43,7 +43,7 @@ export default function (state = initialState, action) {
       let tblId = state.tableId;
       let itemId = action.payload;
       let { [itemId]: currentItemCount, ...tableCartItems } =
-        state.tableOrder[tblId].cartItems;
+        state.tablesAndCartItems[tblId].cartItems;
       let cartItems =
         currentItemCount - 1
           ? {
@@ -53,19 +53,19 @@ export default function (state = initialState, action) {
           : tableCartItems;
       return {
         ...state,
-        tableOrder: {
-          ...state.tableOrder,
+        tablesAndCartItems: {
+          ...state.tablesAndCartItems,
           [tblId]: {
             cartItems,
           },
         },
       };
-    case TABLE_BOOKING:
+    case TABLE_OCCUPIED:
       console.log(action.payload);
-      let tableOrder = state.tableOrder[action.payload]
-        ? state.tableOrder
+      let tablesAndCartItems = state.tablesAndCartItems[action.payload]
+        ? state.tablesAndCartItems
         : {
-            ...state.tableOrder,
+            ...state.tablesAndCartItems,
             [action.payload]: {
               cartItems: {},
             },
@@ -73,12 +73,18 @@ export default function (state = initialState, action) {
       return {
         ...state,
         tableId: action.payload,
-        tableOrder,
+        tablesAndCartItems,
       };
     case BILL_SETTLED:
-      let { [action.payload]: paidBill, ...pendingbills } = state.tableOrder;
+      console.log(action.payload);
+      let { [action.payload]: paidBill, ...pendingbills } =
+        state.tablesAndCartItems;
+      console.log(pendingbills);
       return {
-        tableOrder: { ...pendingbills },
+        ...state,
+        selectedCategory: "",
+        tableId: "",
+        tablesAndCartItems: { ...pendingbills },
       };
 
     default:

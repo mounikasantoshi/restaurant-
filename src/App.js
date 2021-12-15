@@ -6,7 +6,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Table from "./components/Table";
 import NavBar from "./components/NavBar";
 import { useSelector } from "react-redux";
-import TableOrder from "./components/TableOrder";
 
 function App() {
   const orderedTableId = useSelector(({ sidebar: { tableId } }) => {

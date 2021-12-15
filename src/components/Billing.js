@@ -4,44 +4,19 @@ import Counter from "./Counter";
 import items from "../data/items.json";
 import { useSelector, useDispatch } from "react-redux";
 import { onBillpaid } from "../Redux/Actions/NavActions";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-export default function Billing() {
-  // const { orderedtableId } = useParams();
-  // const dispatch = useDispatch();
+const Billing = React.forwardRef((props, ref) => {
+  let { tableId } = useParams();
+  const dispatch = useDispatch();
 
-  const tableOrders = useSelector(({ sidebar: { tableId, tableOrder } }) => {
-    console.log(tableId, "text98");
-    console.log(tableOrder, "text99");
-    const cart = tableOrder[tableId].cartItems;
-    console.log(cart);
-    return cart;
-  });
-
-  // const printPage = () => {
-  //   const printButton = document.getElementById("remove");
-  //   const incButton = document.getElementById("inc");
-  //   const printRemoveButton = document.getElementById("printBtn");
-  //   const tableHeight = document.getElementById("tableprt");
-  //   printButton.style.visibility = "hidden";
-  //   printRemoveButton.style.visibility = "hidden";
-  //   incButton.style.visibility = "hidden";
-  //   tableHeight.style.height = "none";
-
-  //   var print_div = document.getElementById("print");
-
-  //   var print_area = window.open();
-  //   print_area.document.write(print_div.innerHTML);
-  //   // print_area.document.close();
-  //   // print_area.focus();
-  //   print_area.print();
-  //   // print_area.close();
-  //   // This is the code print a particular div element
-  //   tableHeight.style.height = "10px";
-  //   incButton.style.visibility = "visible";
-  //   printButton.style.visibility = "visible";
-  //   printRemoveButton.style.visibility = "visible";
-  // };
+  const tableOrders = useSelector(
+    ({ sidebar: { tableId, tablesAndCartItems } }) => {
+      const cart = tablesAndCartItems[tableId].cartItems;
+      console.log(cart);
+      return cart;
+    }
+  );
 
   const orderedList = Object.keys(tableOrders);
   function getTotalBIll() {
@@ -53,66 +28,68 @@ export default function Billing() {
 
   return (
     <div>
-      <Container id="print">
-        <Table
-          responsive
-          style={{
-            display: "block",
-            height: "450px",
-          }}
-        >
-          <thead>
-            <tr>
-              <th>#</th>
-              <th> Item Name</th>
-              <th>Qty</th>
-              <th>Price</th>
-              <th>TotalPrice</th>
-            </tr>
-          </thead>
-          <tbody>
-            {orderedList.map((id, i) => {
-              const { itemName, cost } = items[id];
-
-              return (
-                <tr style={{ height: "10px" }} id="tableprt">
-                  <td>{i + 1}</td>
-                  <td>{itemName}</td>
-
-                  <td>
-                    <Counter id={id} counter={tableOrders[id]} />
-                  </td>
-                  <td>{cost}</td>
-                  <td>{tableOrders[id] * cost}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
-        <Table>
-          <tbody>
-            <tr>
-              <td>#</td>
-              <td>Total Price</td>
-              <td>-</td>
-              <td>-</td>
-              <td>{getTotalBIll()}</td>
-            </tr>
-          </tbody>
-        </Table>
-        <div class="d-flex justify-content-between">
-          <Button
-            className="printPageButton"
-            id="printBtn"
-            // onClick={printPage}
+      <Container>
+        <div>
+          <Table
+            responsive
+            style={{
+              display: "block",
+              height: "450px",
+            }}
           >
-            Print
-          </Button>
-          {/* <Button onClick={dispatch(onBillpaid(orderedtableId))}>
-            Bill Settled
-          </Button> */}
+            <thead>
+              <tr>
+                <th>#</th>
+                <th> Item Name</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>TotalPrice</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orderedList.map((id, i) => {
+                const { itemName, cost } = items[id];
+
+                return (
+                  <tr key={id} style={{ height: "10px" }} id="tableprt">
+                    <td>{i + 1}</td>
+                    <td>{itemName}</td>
+
+                    <td>
+                      <Counter id={id} counter={tableOrders[id]} />
+                    </td>
+                    <td>{cost}</td>
+                    <td>{tableOrders[id] * cost}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
+          <Table>
+            <tbody>
+              <tr>
+                <td>#</td>
+                <td>Total Price</td>
+                <td>-</td>
+                <td>-</td>
+                <td>{getTotalBIll()}</td>
+              </tr>
+            </tbody>
+          </Table>
+          <div class="d-flex justify-content-between"></div>
+          <Link to="/">
+            <span className="d-flex flex-row-reverse">
+              <Button
+                onClick={() => dispatch(onBillpaid(tableId))}
+                className="noprint "
+              >
+                Bill Paid
+              </Button>
+            </span>
+          </Link>
         </div>
       </Container>
     </div>
   );
-}
+});
+export default Billing;
